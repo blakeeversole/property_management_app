@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import LoginComponent from './LoginComponent.jsx'
 import HeaderComponent from './HeaderComponent.jsx'
 import FooterComponent from './FooterComponent.jsx'
-// import WelcomeComponent from './WelcomeComponent.jsx'
+import WelcomeComponent from './WelcomeComponent.jsx'
 
 class PropertyManagement extends Component{
     render() {
@@ -16,8 +16,8 @@ class PropertyManagement extends Component{
                         <Switch>
                             <Route path="/" exact component={LoginComponent}/>
                             <Route path="/login" component={LoginComponent}/>
-                            {/* <AuthenticatedRoute path="/welcome/:name" component={WelcomeComponent}/>                           
-                            <Route component={ErrorComponent}/> */}
+                            {/* <AuthenticatedRoute path="/welcome/:name" component={WelcomeComponent}/>                            */}
+                            <Route component={WelcomeComponent}/>
                         </Switch>
                         <FooterComponent/>
                     </>
