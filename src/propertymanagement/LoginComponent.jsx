@@ -35,6 +35,7 @@ class LoginComponent extends Component{
         // }) 
         console.log(this.state)
         if(this.state.username === 'Blake' && this.state.password === 'Eversole'){
+            AuthenticationService.registerSuccessfulLogin(this.state.username)
             this.props.history.push(`/properties/${this.state.username}`)
         }
         else{
