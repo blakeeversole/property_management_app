@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
-//import AuthenticationService from './AuthenticationService.js'
+import AuthenticationService from '../propertymanagement/authentication/AuthenticationService.js'
 
 class LoginComponent extends Component{
     constructor(props){
         super(props)
         this.state = {
             username: 'Blake',
-            password: 'Blake',
+            password: 'Eversole',
             hasLoginFailed: false,
             showSuccessMessage: false
         }
@@ -23,12 +23,19 @@ class LoginComponent extends Component{
             })
     }
 
-    loginClicked(){
+    loginClicked(){        
+        // AuthenticationService
+        // .executeJwtAuthenticationService(this.state.username, this.state.password)
+        // .then( (response) => {
+        //     AuthenticationService.registerSuccessfulLoginForJwt(this.state.username, response.data.token)
+        //     this.props.history.push(`/properties`)
+        // }).catch( () => {
+        //     this.setState({showSuccessMessage:false})
+        //     this.setState({hasLoginFailed:true})
+        // }) 
         console.log(this.state)
-        let a = this.state.username;
-        let b = this.state.password;
-        if(this.state.username === 'Blake' && this.state.password === 'Blake'){
-            this.props.history.push('/welcome')
+        if(this.state.username === 'Blake' && this.state.password === 'Eversole'){
+            this.props.history.push(`/properties/${this.state.username}`)
         }
         else{
             this.setState({hasLoginFailed:true})
@@ -42,6 +49,7 @@ class LoginComponent extends Component{
                 <div className="container">
                 
                     {this.state.hasLoginFailed && <div className="alert alert-warning text-center">Invalid Credentials</div>}
+                    {this.state.showSuccessMessage && <div>Login Successful</div>}
 
                     <div className="row">
                         <div className="col-4"></div>
