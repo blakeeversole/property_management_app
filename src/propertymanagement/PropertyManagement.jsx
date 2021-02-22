@@ -5,6 +5,7 @@ import LoginComponent from './LoginComponent.jsx'
 import HeaderComponent from './HeaderComponent.jsx'
 import FooterComponent from './FooterComponent.jsx'
 import PropertiesComponent from './PropertiesComponent.jsx'
+import LogoutComponent from './LogoutComponent.jsx'
 import AuthenticatedRoute from './authentication/AuthenticatedRoute.js'
 
 class PropertyManagement extends Component{
@@ -18,6 +19,7 @@ class PropertyManagement extends Component{
                             <Route path="/" exact component={LoginComponent}/>
                             <Route path="/login" component={LoginComponent}/>                         
                             <AuthenticatedRoute path="/properties/:name" component={PropertiesComponent}/>
+                            <Route path="/logout" component={LogoutComponent}/>      
                             {/* {<AuthenticatedRoute path="/welcome/:name" component={WelcomeComponent}/>    */}
                         </Switch>
                         <FooterComponent/>
