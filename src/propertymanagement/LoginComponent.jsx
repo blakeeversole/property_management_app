@@ -15,7 +15,6 @@ class LoginComponent extends Component{
     }
 
     handleChange(event){
-        console.log(this.state)
         this.setState(
             {
                 [event.target.name]
@@ -23,24 +22,18 @@ class LoginComponent extends Component{
             })
     }
 
-    loginClicked(){        
-        // AuthenticationService
-        // .executeJwtAuthenticationService(this.state.username, this.state.password)
-        // .then( (response) => {
-        //     AuthenticationService.registerSuccessfulLoginForJwt(this.state.username, response.data.token)
-        //     this.props.history.push(`/properties`)
-        // }).catch( () => {
-        //     this.setState({showSuccessMessage:false})
-        //     this.setState({hasLoginFailed:true})
-        // }) 
+    loginClicked(){      
         console.log(this.state)
-        if(this.state.username === 'Blake' && this.state.password === 'Eversole'){
+
+        AuthenticationService
+        .executeBasicAuthenticationService(this.state.username, this.state.password)
+        .then( (response) => {
             AuthenticationService.registerSuccessfulLogin(this.state.username)
             this.props.history.push(`/properties/${this.state.username}`)
-        }
-        else{
+        }).catch( () => {
+            this.setState({showSuccessMessage:false})
             this.setState({hasLoginFailed:true})
-        }
+        }) 
     }
 
     render(){

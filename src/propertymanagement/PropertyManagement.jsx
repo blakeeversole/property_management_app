@@ -20,7 +20,6 @@ class PropertyManagement extends Component{
                             <Route path="/login" component={LoginComponent}/>                         
                             <AuthenticatedRoute path="/properties/:name" component={PropertiesComponent}/>
                             <Route path="/logout" component={LogoutComponent}/>      
-                            {/* {<AuthenticatedRoute path="/welcome/:name" component={WelcomeComponent}/>    */}
                         </Switch>
                         <FooterComponent/>
                     </>
