@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import PropertyManagementService from '../api/PropertyManagementService.js'
+import AuthenticationService from '../propertymanagement/authentication/AuthenticationService.js'
 
 class PropertiesComponent extends Component{
     constructor(props){
@@ -17,13 +18,21 @@ class PropertiesComponent extends Component{
     }
 
     refreshProperties(){
-        PropertyManagementService.getAllProperties()
+        let username = AuthenticationService.getLoggedInUserName()
+        PropertyManagementService.getAllProperties(username)
           .then(
               response => {
-                //console.log(response)
                 this.setState({properties : response.data})
             }
           )
+
+        // PropertyManagementService.getAllProperties()
+        //   .then(
+        //       response => {
+        //         //console.log(response)
+        //         this.setState({properties : response.data})
+        //     }
+        //   )
     }
 
     render(){
@@ -65,7 +74,8 @@ class PropertiesComponent extends Component{
                         </tbody>
                     </table>
                     <div className="row">
-                        <button className="btn btn-success" onClick={this.addTodoClicked}>Add</button>
+                        <button className="btn btn-success">Add</button>
+                        {/* <button className="btn btn-success" onClick={this.addTodoClicked}>Add</button> */}
 
                     </div>
                 

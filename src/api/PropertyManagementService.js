@@ -1,27 +1,15 @@
 import axios from "axios"
+import {JPA_API_URL} from '../Constants'
 
 class PropertyManagementService{
     getAllProperties(name){
-// console.log('executed service')
-        // let username = "Blake"
-        // let password = "Eversole"
-
-        // let basicAuthHeader = 'Basic ' + window.btoa(username + ":" + password)
-        return axios.get(`http://localhost:8080/property-management/${name}`
-        // ,
-        //     {headers: {authorization: basicAuthHeader}}        
-        );
-        /////////////
-        // console.log('executed service')
-        // return axios.get(`http://localhost:8080/property-management/${name}`,
-        //     {
-        //         headers : {
-        //             authorization: 
-        //         }
-        //     }
-        // );
+        return axios.get(`${JPA_API_URL}/property-management/${name}`);
     }
 
+    retrieveProperty(name, id){
+        // console.log('executed service')
+        return axios.get(`${JPA_API_URL}/property-management/${name}/${id}`);
+    }
 }
 
 export default new PropertyManagementService()
