@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import PropertyManagementService from '../api/PropertyManagementService.js'
-import AuthenticationService from './AuthenticationService.js'
+//import AuthenticationService from './AuthenticationService.js'
 
 class AddEditPropertyComponent extends Component{
 
@@ -26,9 +26,9 @@ class AddEditPropertyComponent extends Component{
             return
         }
 
-        let username = AuthenticationService.getLoggedInUserName()
+        //let username = AuthenticationService.getLoggedInUserName()
 
-        PropertyManagementService.retrieveTodo(username, this.state.id)
+        PropertyManagementService.retrieveProperty(this.state.id)
                 .then(response => this.setState({
                     address1: response.data.address1,
                     address2: response.data.address2,
@@ -48,7 +48,7 @@ class AddEditPropertyComponent extends Component{
     }
 
     onSubmit(values){ 
-        let username = AuthenticationService.getLoggedInUserName()
+        //let username = AuthenticationService.getLoggedInUserName()
 
         let property = {
             id: this.state.id,
@@ -60,11 +60,11 @@ class AddEditPropertyComponent extends Component{
         }
 
         if (this.state.id===-1) {
-            PropertyManagementService.createTodo(username, property)
-            .then(() => this.props.history.push('/property_management'))
+            PropertyManagementService.createTodo(property)
+            .then(() => this.props.history.push('/properties'))
         } else {
-            PropertyManagementService.updateTodo(username, this.state.id, property)
-            .then(() => this.props.history.push('/propety_management'))
+            PropertyManagementService.updateTodo(this.state.id, property)
+            .then(() => this.props.history.push('/properties'))
         }
     }
 
