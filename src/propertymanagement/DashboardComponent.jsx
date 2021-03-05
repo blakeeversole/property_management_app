@@ -1,7 +1,4 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
-import PropertyManagementService from '../api/PropertyManagementService.js'
-import AuthenticationService from '../propertymanagement/authentication/AuthenticationService.js'
 
 class DashboardComponent extends Component{
     constructor(props){
@@ -9,12 +6,17 @@ class DashboardComponent extends Component{
         this.state = {
         }
         this.propertiesClicked = this.propertiesClicked.bind(this)
+        this.usersClicked = this.usersClicked.bind(this)
         
     }
 
     // componentDidMount(){
     //  //   this.refreshProperties();
     // }
+
+    usersClicked(){
+        this.props.history.push('/users')
+    }
 
     propertiesClicked(){
         this.props.history.push('/properties')
@@ -26,8 +28,7 @@ class DashboardComponent extends Component{
                 <h1 className="text-center">Dashboard</h1>
                 <div className="container">                    
                     <div className="row">
-                    
-                    {/* <button className="btn btn-success"><Link to="/properties" >Properties</Link></button> */}
+                        <button className="btn btn-success" onClick={this.usersClicked}>Users</button>
                         <button className="btn btn-success" onClick={this.propertiesClicked}>Properties</button>
                     </div>
                 
