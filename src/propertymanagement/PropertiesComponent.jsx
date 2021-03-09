@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import PropertyManagementService from '../api/PropertyManagementService.js'
-import AuthenticationService from '../propertymanagement/authentication/AuthenticationService.js'
 
 class PropertiesComponent extends Component{
     constructor(props){
@@ -75,7 +74,6 @@ class PropertiesComponent extends Component{
                                         <td>{property.city}</td>
                                         <td>{property.state}</td>
                                         <td>{property.zipcode}</td>
-                                        {/* <td><button className="btn btn-success">Update</button></td> */}
                                         <td><button onClick={() => this.updatePropertyClicked(property.id)} className="btn btn-success">Update</button></td>
                                         <td><button className="btn btn-warning">Delete</button></td>
                                         {/* <td><button onClick={() => this.deleteTodoClicked(todo.id)} className="btn btn-warning">Delete</button></td> */}

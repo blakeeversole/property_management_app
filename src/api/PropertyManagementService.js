@@ -8,6 +8,22 @@ class PropertyManagementService{
         let token = AuthenticationService.getJWTTokenHeader();        
         return axios.get(`${JPA_API_URL}/users`, {headers: { authorization: `${token}` }});
     }    
+
+    retrieveUser(){
+        let token = AuthenticationService.getJWTTokenHeader();        
+        return axios.get(`${JPA_API_URL}/user`, {headers: { authorization: `${token}` }});
+    }
+
+    createUser(user) {
+        let token = AuthenticationService.getJWTTokenHeader();
+        
+        var postData = {
+            id: 0,
+            username: user.username,
+            password: user.password
+        };
+        return axios.post(`${JPA_API_URL}/users`, postData, {headers: { authorization: `${token}` }});
+    }
     
     //Properties
     getAllProperties(){

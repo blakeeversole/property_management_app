@@ -9,6 +9,7 @@ import LogoutComponent from './LogoutComponent.jsx'
 import AuthenticatedRoute from './authentication/AuthenticatedRoute.js'
 import DashboardComponent from './DashboardComponent.jsx'
 import UsersComponent from './UsersComponent.jsx'
+import AddUserComponent from './AddUserComponent.jsx'
 
 class PropertyManagement extends Component{
     render() {
@@ -19,8 +20,9 @@ class PropertyManagement extends Component{
                         <HeaderComponent/>
                         <Switch>
                             <Route path="/" exact component={LoginComponent}/>
-                            <Route path="/login" component={LoginComponent}/>                       
-                            <AuthenticatedRoute path="/users" component={UsersComponent}/>    
+                            <Route path="/login" component={LoginComponent}/>                        
+                            <AuthenticatedRoute path="/users" component={UsersComponent}/>  
+                            <AuthenticatedRoute path="/user" component={AddUserComponent}/>   
                             <AuthenticatedRoute path="/properties/:id" component={AddEditPropertyComponent}/>                         
                             <AuthenticatedRoute path="/properties" component={PropertiesComponent}/>                    
                             <AuthenticatedRoute path="/dashboard" component={DashboardComponent}/>

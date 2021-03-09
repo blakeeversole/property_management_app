@@ -5,38 +5,40 @@ class UsersComponent extends Component{
     constructor(props){
         super(props)
         this.state = {
-            users : []
+            users : [
+                {authorities:[]}
+            ]
         }
         
         this.refreshUsers = this.refreshUsers.bind(this)
+        this.addUserClicked = this.addUserClicked.bind(this)
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.refreshUsers();
     }
 
     refreshUsers(){
         PropertyManagementService.getAllUsers()
-          .then(
-              response => {
+          .then(response => {
                 this.setState({users : response.data})
             }
           )
+          
     }
 
-    // addPropertyClicked(){
-    //     this.props.history.push('/properties/-1')
-    // }
-
-    // updatePropertyClicked(id){
-    //     this.props.history.push(`/properties/${id}`)
-    // }
+    addUserClicked(){
+        this.props.history.push('/user')
+    }
 
     render(){
         return(
             <div>
                 <h1 className="text-center">List of Users</h1>
                 <div className="container">
+                    <div className="row">
+                        <button className="btn btn-success" onClick={this.addUserClicked}>Add</button>
+                    </div>
                     <table className="table">
                         <thead>
                             <tr>
@@ -47,20 +49,25 @@ class UsersComponent extends Component{
                         </thead>
                         <tbody>
                             {
-                                this.state.users.map(
-                                    user => 
-                                    <tr key={user.id}>
-                                        <td>{user.id}</td>
-                                        <td>{user.username}</td>
-                                        <td>{user.role}</td>
-                                    </tr>
-                                )                            
+                                this.state.users.map((user, index) => (
+                                        <>
+                                            <tr key={user.id}>
+                                                <td>{user.id}</td>
+                                                <td>{user.username}</td>
+                                                <td>
+                                                    {user.authorities.map((authority, index) => (
+                                                        <div key={index}>
+                                                            <p>{authority.authority}</p>
+                                                        </div>
+                                                    ))}
+                                                </td>
+                                            </tr>
+                                        </>
+                                    )
+                                )                   
                             }
                         </tbody>
                     </table>
-                    {/* <div className="row">
-                        <button className="btn btn-success" onClick={this.addPropertyClicked}>Add</button>
-                    </div> */}
                 
                 </div>
             </div>
