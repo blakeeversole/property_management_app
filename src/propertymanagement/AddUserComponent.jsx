@@ -11,7 +11,7 @@ class AddEditUserComponent extends Component{
             id : this.props.match.params.id,
             username : '',
             password : '',
-            authority: ''
+            role: ''
         }
 
         this.onSubmit = this.onSubmit.bind(this)
@@ -35,10 +35,10 @@ class AddEditUserComponent extends Component{
         //let username = AuthenticationService.getLoggedInUserName()
 
         let user = {
-            id: -1,
+            id: 0,
             username: values.username,
             password: values.password,
-            //authority: values.authority
+            role: values.role
         }
 
         PropertyManagementService.createUser(user)
@@ -46,13 +46,13 @@ class AddEditUserComponent extends Component{
     }
 
     render(){
-        let {username, password, authority} = this.state
+        let {username, password, role} = this.state
         return (
             <div>
-                <h1>User</h1>
+                <h1 className="text-center">User</h1>
                 <div className="container">
                     <Formik
-                        initialValues={{username, password, authority}}
+                        initialValues={{username, password, role}}
                         onSubmit={this.onSubmit}
                         validateOnChange={false}
                         validateOnBlur={false}
@@ -74,7 +74,12 @@ class AddEditUserComponent extends Component{
                                     </fieldset>       
                                     <fieldset className="form-group">
                                         <label>Role</label>
-                                        <Field className="form-control" type="text" name="authority"/>
+                                        <Field className="form-control" as="select" name="role">                                        
+                                        <option value="">--Select--</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Employee">Employee</option>
+                                            <option value="Tenant">Tenant</option>
+                                        </Field>
                                     </fieldset>     
                                     <button className="btn btn-success" type="submit">Save</button>   
                                 </Form>

@@ -16,13 +16,7 @@ class PropertyManagementService{
 
     createUser(user) {
         let token = AuthenticationService.getJWTTokenHeader();
-        
-        var postData = {
-            id: 0,
-            username: user.username,
-            password: user.password
-        };
-        return axios.post(`${JPA_API_URL}/users`, postData, {headers: { authorization: `${token}` }});
+        return axios.post(`${JPA_API_URL}/users`, user, {headers: { authorization: `${token}` }});
     }
     
     //Properties
