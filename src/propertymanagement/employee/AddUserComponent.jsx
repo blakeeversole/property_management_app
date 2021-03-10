@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
-import PropertyManagementService from '../api/PropertyManagementService.js'
+import PropertyManagementService from '../../api/PropertyManagementService.js'
 
 class AddEditUserComponent extends Component{
 
@@ -76,7 +76,7 @@ class AddEditUserComponent extends Component{
                                         <label>Role</label>
                                         <Field className="form-control" as="select" name="role">                                        
                                         <option value="">--Select--</option>
-                                            <option value="Admin">Admin</option>
+                                            <option value="Employee">Employee</option>
                                             <option value="Employee">Employee</option>
                                             <option value="Tenant">Tenant</option>
                                         </Field>

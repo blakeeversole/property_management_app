@@ -1,14 +1,18 @@
 import React, {Component} from 'react'
-import PropertyManagementService from '../api/PropertyManagementService.js'
+import PropertyManagementService from '../../api/PropertyManagementService.js'
 
 class PropertiesComponent extends Component{
     constructor(props){
         super(props)
         this.state = {
-            properties : []
+            properties : [],
+            message: null
         }
         
         this.refreshProperties = this.refreshProperties.bind(this)
+        this.addPropertyClicked = this.addPropertyClicked.bind(this)
+        this.updatePropertyClicked = this.updatePropertyClicked.bind(this)
+        this.deletePropertyClicked = this.deletePropertyClicked.bind(this)
     }
 
     componentDidMount(){
@@ -16,9 +20,6 @@ class PropertiesComponent extends Component{
     }
 
     refreshProperties(){
-        // let username = AuthenticationService.getLoggedInUserName()        
-        // AuthenticationService.registerSuccessfulLoginForJwt(this.state.username, this.state.response.data.token)
-        //AuthenticationService.setupAxiosInterceptors(this.state.response.data.token)
         PropertyManagementService.getAllProperties()
           .then(
               response => {
@@ -28,37 +29,35 @@ class PropertiesComponent extends Component{
     }
 
     addPropertyClicked(){
-        this.props.history.push('/properties/-1')
+        this.props.history.push('/properties/0')
     }
 
     updatePropertyClicked(id){
         this.props.history.push(`/properties/${id}`)
+    }
 
-        // /todos/${id}
-        // let username = AuthenticationService.getLoggedInUserName()
-        // TodoDataService.deleteTodo(username,id)
-        //     .then(
-        //         response => {
-        //             this.setState({message : `Delete of todo ${id} Successful`})
-        //             this.refreshTodos()
-        //         }
-        //     )
+    deletePropertyClicked(id) {
+        PropertyManagementService.deleteProperty(id)
+            .then(
+                response => {
+                    this.setState({ message: `Delete of todo ${id} Successful` })
+                    this.refreshProperties()
+                }
+            )
+
     }
 
     render(){
         return(
             <div>
                 <h1 className="text-center">List of Properties</h1>
+                {this.state.message && <div className="alert alert-success text-center">{this.state.message}</div>}
                 <div className="container">
                     <table className="table">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Address 1</th>
-                                <th>Address 2</th>
-                                <th>City</th>
-                                <th>State</th>
-                                <th>Zipcode</th>
+                                <th>Address</th>
                                 <th>Update</th>
                                 <th>Delete</th>
                             </tr>
@@ -69,14 +68,12 @@ class PropertiesComponent extends Component{
                                     property => 
                                     <tr key={property.id}>
                                         <td>{property.id}</td>
-                                        <td>{property.address1}</td>
-                                        <td>{property.address2}</td>
-                                        <td>{property.city}</td>
-                                        <td>{property.state}</td>
-                                        <td>{property.zipcode}</td>
+                                        <td>{property.address1} {property.address2} <br></br>
+                                        {property.city} {property.state} {property.zipcode}
+                                        </td>
                                         <td><button onClick={() => this.updatePropertyClicked(property.id)} className="btn btn-success">Update</button></td>
-                                        <td><button className="btn btn-warning">Delete</button></td>
-                                        {/* <td><button onClick={() => this.deleteTodoClicked(todo.id)} className="btn btn-warning">Delete</button></td> */}
+                                        {/* <td><button className="btn btn-warning">Delete</button></td> */}
+                                        <td><button onClick={() => this.deletePropertyClicked(property.id)} className="btn btn-warning">Delete</button></td>
                                     </tr>
                                 )                            
                             }

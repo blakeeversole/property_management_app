@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
-import PropertyManagementService from '../api/PropertyManagementService.js'
+import PropertyManagementService from '../../api/PropertyManagementService.js'
 //import AuthenticationService from './AuthenticationService.js'
 
 class AddEditPropertyComponent extends Component{
@@ -22,7 +22,7 @@ class AddEditPropertyComponent extends Component{
     }
 
     componentDidMount(){
-        if(this.state.id===-1){
+        if(this.state.id==='0'){
             return
         }
 
@@ -59,11 +59,12 @@ class AddEditPropertyComponent extends Component{
             zipcode: values.zipcode
         }
 
-        if (this.state.id===-1) {
-            PropertyManagementService.createTodo(property)
+
+        if (this.state.id==='0') {
+            PropertyManagementService.createProperty(property)
             .then(() => this.props.history.push('/properties'))
         } else {
-            PropertyManagementService.updateTodo(this.state.id, property)
+            PropertyManagementService.updateProperty(this.state.id, property)
             .then(() => this.props.history.push('/properties'))
         }
     }
@@ -72,7 +73,7 @@ class AddEditPropertyComponent extends Component{
         let {address1, address2, city, state, zipcode} = this.state
         return (
             <div>
-                <h1>Property</h1>
+                <h1 className="text-center">Property</h1>
                 <div className="container">
                     <Formik
                         initialValues={{address1, address2, city, state, zipcode}}

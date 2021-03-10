@@ -3,30 +3,32 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import LoginComponent from './LoginComponent.jsx'
 import HeaderComponent from './HeaderComponent.jsx'
 import FooterComponent from './FooterComponent.jsx'
-import AddEditPropertyComponent from './AddEditPropertyComponent.jsx'
-import PropertiesComponent from './PropertiesComponent.jsx'
+import AddEditPropertyComponent from './employee/AddEditPropertyComponent.jsx'
+import PropertiesComponent from './employee/PropertiesComponent.jsx'
 import LogoutComponent from './LogoutComponent.jsx'
-import AuthenticatedRoute from './authentication/AuthenticatedRoute.js'
-import DashboardComponent from './DashboardComponent.jsx'
-import UsersComponent from './UsersComponent.jsx'
-import AddUserComponent from './AddUserComponent.jsx'
+import PrivateRoute from './authentication/PrivateRoute.jsx'
+import EmployeeDashboardComponent from './employee/EmployeeDashboardComponent.jsx'
+import UsersComponent from './employee/UsersComponent.jsx'
+import AddUserComponent from './employee/AddUserComponent.jsx'
+import {Role} from '../Constants'
 
 class PropertyManagement extends Component{
     render() {
         return(
-            <div className="PropertyManagement">
+            <div className="EmployeeArea">
                 <Router>
                     <>
                         <HeaderComponent/>
                         <Switch>
                             <Route path="/" exact component={LoginComponent}/>
-                            <Route path="/login" component={LoginComponent}/>                        
-                            <AuthenticatedRoute path="/users" component={UsersComponent}/>  
-                            <AuthenticatedRoute path="/user" component={AddUserComponent}/>   
-                            <AuthenticatedRoute path="/properties/:id" component={AddEditPropertyComponent}/>                         
-                            <AuthenticatedRoute path="/properties" component={PropertiesComponent}/>                    
-                            <AuthenticatedRoute path="/dashboard" component={DashboardComponent}/>
-                            <Route path="/logout" component={LogoutComponent}/>      
+                            <Route path="/login" component={LoginComponent}/>  
+                            <Route path="/logout" component={LogoutComponent}/>   
+                            {/* EMPLOYEE ROUTES */}
+                            <PrivateRoute path="/users" roles={[Role.Employee]} component={UsersComponent}/>  
+                            <PrivateRoute path="/user" roles={[Role.Employee]} component={AddUserComponent}/>   
+                            <PrivateRoute path="/properties/:id" roles={[Role.Employee]} component={AddEditPropertyComponent}/>                         
+                            <PrivateRoute path="/properties" roles={[Role.Employee]} component={PropertiesComponent}/>                    
+                            <PrivateRoute path="/employeedashboard" roles={[Role.Employee]} component={EmployeeDashboardComponent}/>   
                         </Switch>
                         <FooterComponent/>
                     </>

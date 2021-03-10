@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import AuthenticationService from '../propertymanagement/authentication/AuthenticationService.js'
 
+
 class LoginComponent extends Component{
     constructor(props){
         super(props)
@@ -22,13 +23,16 @@ class LoginComponent extends Component{
             })
     }
 
-    loginClicked(){      
-        console.log(this.state)
-        AuthenticationService
-        .executeJwtAuthenticationService(this.state.username, this.state.password)
+    async loginClicked(){            
+        await AuthenticationService.executeJwtAuthenticationService(this.state.username, this.state.password)
         .then( (response) => {
-            AuthenticationService.registerSuccessfulLoginForJwt(this.state.username, response.data.token)
-            this.props.history.push(`/dashboard`)
+            AuthenticationService.setSessionStorage(this.state.username, response.data.token)
+            AuthenticationService.returnUserRole(this.state.username)
+            .then( (response) => {
+                sessionStorage.setItem('userRole', response.data.role)
+                this.props.history.push(`/employeedashboard`)
+                console.log(sessionStorage);
+            })     
         }).catch( () => {
             this.setState({showSuccessMessage:false})
             this.setState({hasLoginFailed:true})

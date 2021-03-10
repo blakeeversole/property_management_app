@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import PropertyManagementService from '../api/PropertyManagementService.js'
+import PropertyManagementService from '../../api/PropertyManagementService.js'
 
 class UsersComponent extends Component{
     constructor(props){
