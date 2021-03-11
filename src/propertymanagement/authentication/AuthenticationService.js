@@ -32,7 +32,7 @@ class AuthenticationService{
         }        
     }   
 
-    async isUserLoggedIn(){
+    isUserLoggedIn(){
         let user = sessionStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
         if(user===null) return false
             return true

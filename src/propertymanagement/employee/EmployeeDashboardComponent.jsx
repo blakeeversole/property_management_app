@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-class DashboardComponent extends Component{
+class EmployeeDashboardComponent extends Component{
     constructor(props){
         super(props)
         this.state = {
@@ -38,4 +38,4 @@ class DashboardComponent extends Component{
     }
 }
 
-export default DashboardComponent
+export default EmployeeDashboardComponent

@@ -30,7 +30,13 @@ class LoginComponent extends Component{
             AuthenticationService.returnUserRole(this.state.username)
             .then( (response) => {
                 sessionStorage.setItem('userRole', response.data.role)
-                this.props.history.push(`/employeedashboard`)
+                if(response.data.role === 'Employee'){
+                    this.props.history.push(`/employeedashboard`)
+                }
+                if(response.data.role === 'Tenant'){
+                    this.props.history.push(`/tenantdashboard`)
+                }
+                
                 console.log(sessionStorage);
             })     
         }).catch( () => {

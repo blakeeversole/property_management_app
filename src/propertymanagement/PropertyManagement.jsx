@@ -11,6 +11,7 @@ import EmployeeDashboardComponent from './employee/EmployeeDashboardComponent.js
 import UsersComponent from './employee/UsersComponent.jsx'
 import AddUserComponent from './employee/AddUserComponent.jsx'
 import {Role} from '../Constants'
+import TenantDashboardComponent from './tenant/TenantDashboardComponent.jsx'
 
 class PropertyManagement extends Component{
     render() {
@@ -29,6 +30,8 @@ class PropertyManagement extends Component{
                             <PrivateRoute path="/properties/:id" roles={[Role.Employee]} component={AddEditPropertyComponent}/>                         
                             <PrivateRoute path="/properties" roles={[Role.Employee]} component={PropertiesComponent}/>                    
                             <PrivateRoute path="/employeedashboard" roles={[Role.Employee]} component={EmployeeDashboardComponent}/>   
+                            {/* TENANT ROUTES */}      
+                            <PrivateRoute path="/tenantdashboard" roles={[Role.Tenant]} component={TenantDashboardComponent}/> 
                         </Switch>
                         <FooterComponent/>
                     </>
