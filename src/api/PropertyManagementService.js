@@ -9,6 +9,16 @@ class PropertyManagementService{
         let token = await AuthenticationService.getJWTTokenHeader();
         return axios.post(`${JPA_API_URL}/application`, application, {headers: { authorization: `${token}` }});
     }
+
+    async getAllApplications(){
+        let token = await AuthenticationService.getJWTTokenHeader();        
+        return axios.get(`${JPA_API_URL}/applications`, {headers: { authorization: `${token}` }});
+    }
+
+    async getAllApplicationsWithPropertyId(propertyID){
+        let token = await AuthenticationService.getJWTTokenHeader();        
+        return axios.get(`${JPA_API_URL}/applications/${propertyID}`, {headers: { authorization: `${token}` }});
+    }
     
     async getIfUserHasApplied() {
         let username = AuthenticationService.getLoggedInUserName();
@@ -19,7 +29,12 @@ class PropertyManagementService{
         )
 
         let token = await AuthenticationService.getJWTTokenHeader();
-        return axios.get(`${JPA_API_URL}/application/${userId}`, {headers: { authorization: `${token}` }});
+        return axios.get(`${JPA_API_URL}/application-check/${userId}`, {headers: { authorization: `${token}` }});
+    }
+
+    async retrieveApplication(applicationID){
+        let token = await AuthenticationService.getJWTTokenHeader();        
+        return axios.get(`${JPA_API_URL}/application/${applicationID}`, {headers: { authorization: `${token}` }});
     }
 
     //Users

@@ -72,7 +72,6 @@ class PropertiesComponent extends Component{
                                         {property.city} {property.state} {property.zipcode}
                                         </td>
                                         <td><button onClick={() => this.updatePropertyClicked(property.id)} className="btn btn-success">Update</button></td>
-                                        {/* <td><button className="btn btn-warning">Delete</button></td> */}
                                         <td><button onClick={() => this.deletePropertyClicked(property.id)} className="btn btn-warning">Delete</button></td>
                                     </tr>
                                 )                            
