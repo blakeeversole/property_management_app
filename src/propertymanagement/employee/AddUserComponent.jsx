@@ -77,8 +77,8 @@ class AddEditUserComponent extends Component{
                                         <Field className="form-control" as="select" name="role">                                        
                                         <option value="">--Select--</option>
                                             <option value="Employee">Employee</option>
-                                            <option value="Employee">Employee</option>
                                             <option value="Tenant">Tenant</option>
+                                            <option value="Applicant">Applicant</option>
                                         </Field>
                                     </fieldset>     
                                     <button className="btn btn-success" type="submit">Save</button>   

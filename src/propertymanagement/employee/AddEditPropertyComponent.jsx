@@ -26,8 +26,6 @@ class AddEditPropertyComponent extends Component{
             return
         }
 
-        //let username = AuthenticationService.getLoggedInUserName()
-
         PropertyManagementService.retrieveProperty(this.state.id)
                 .then(response => this.setState({
                     address1: response.data.address1,

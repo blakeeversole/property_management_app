@@ -3,15 +3,34 @@ import {JPA_API_URL} from '../Constants'
 import AuthenticationService from '../propertymanagement/authentication/AuthenticationService.js'
 
 class PropertyManagementService{
+
+    //Applications
+    async createApplication(application) {
+        let token = await AuthenticationService.getJWTTokenHeader();
+        return axios.post(`${JPA_API_URL}/application`, application, {headers: { authorization: `${token}` }});
+    }
+    
+    async getIfUserHasApplied() {
+        let username = AuthenticationService.getLoggedInUserName();
+        let userId;
+        await this.retrieveUser(username)
+        .then((response) => 
+            {userId = response.data.id}
+        )
+
+        let token = await AuthenticationService.getJWTTokenHeader();
+        return axios.get(`${JPA_API_URL}/application/${userId}`, {headers: { authorization: `${token}` }});
+    }
+
     //Users
     async getAllUsers(){
         let token = await AuthenticationService.getJWTTokenHeader();        
         return axios.get(`${JPA_API_URL}/users`, {headers: { authorization: `${token}` }});
     }    
 
-    async retrieveUser(){
+    async retrieveUser(username){
         let token = await AuthenticationService.getJWTTokenHeader();        
-        return axios.get(`${JPA_API_URL}/user`, {headers: { authorization: `${token}` }});
+        return axios.get(`${JPA_API_URL}/user/${username}`, {headers: { authorization: `${token}` }});
     }
 
     async createUser(user) {
@@ -31,7 +50,7 @@ class PropertyManagementService{
     }
 
     async deleteProperty(id) {
-        let token = await AuthenticationService.getJWTTokenHeader();
+        let token = await AuthenticationService.getJWTTokenHeader();        
         return axios.delete(`${JPA_API_URL}/property-management/${id}`, {headers: { authorization: `${token}` }});
     }
 

@@ -11,7 +11,7 @@ class AuthenticationService{
             username,
             password
         })
-    }
+    } 
 
     async setSessionStorage(username, token){
         sessionStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, username);

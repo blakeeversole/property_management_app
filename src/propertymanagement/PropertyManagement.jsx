@@ -12,6 +12,9 @@ import UsersComponent from './employee/UsersComponent.jsx'
 import AddUserComponent from './employee/AddUserComponent.jsx'
 import {Role} from '../Constants'
 import TenantDashboardComponent from './tenant/TenantDashboardComponent.jsx'
+import SignUpComponent from './SignUpComponent.jsx'
+import ApplicantDashboardComponent from './applicant/ApplicantDashboardComponent.jsx'
+import ApplicationComponent from './applicant/ApplicationComponent.jsx'
 
 class PropertyManagement extends Component{
     render() {
@@ -23,7 +26,9 @@ class PropertyManagement extends Component{
                         <Switch>
                             <Route path="/" exact component={LoginComponent}/>
                             <Route path="/login" component={LoginComponent}/>  
-                            <Route path="/logout" component={LogoutComponent}/>   
+                            <Route path="/logout" component={LogoutComponent}/> 
+                            <Route path="/signup" component={SignUpComponent}/>   
+                            {/* <Route path="/employeedashboard" component={EmployeeDashboardComponent}/>   */}
                             {/* EMPLOYEE ROUTES */}
                             <PrivateRoute path="/users" roles={[Role.Employee]} component={UsersComponent}/>  
                             <PrivateRoute path="/user" roles={[Role.Employee]} component={AddUserComponent}/>   
@@ -31,7 +36,10 @@ class PropertyManagement extends Component{
                             <PrivateRoute path="/properties" roles={[Role.Employee]} component={PropertiesComponent}/>                    
                             <PrivateRoute path="/employeedashboard" roles={[Role.Employee]} component={EmployeeDashboardComponent}/>   
                             {/* TENANT ROUTES */}      
-                            <PrivateRoute path="/tenantdashboard" roles={[Role.Tenant]} component={TenantDashboardComponent}/> 
+                            <PrivateRoute path="/tenantdashboard" roles={[Role.Tenant]} component={TenantDashboardComponent}/>   
+                            {/* APPLICANT ROUTES */}      
+                            <PrivateRoute path="/applicantdashboard" roles={[Role.Applicant]} component={ApplicantDashboardComponent}/> 
+                            <PrivateRoute path="/application" roles={[Role.Applicant]} component={ApplicationComponent}/> 
                         </Switch>
                         <FooterComponent/>
                     </>

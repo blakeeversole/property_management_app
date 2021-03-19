@@ -36,6 +36,9 @@ class LoginComponent extends Component{
                 if(response.data.role === 'Tenant'){
                     this.props.history.push(`/tenantdashboard`)
                 }
+                if(response.data.role === 'Applicant'){
+                    this.props.history.push(`/applicantdashboard`)
+                }
                 
                 console.log(sessionStorage);
             })     
