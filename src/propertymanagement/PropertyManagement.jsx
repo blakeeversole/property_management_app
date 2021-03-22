@@ -17,7 +17,7 @@ import SignUpComponent from './SignUpComponent.jsx'
 import ApplicantDashboardComponent from './applicant/ApplicantDashboardComponent.jsx'
 import ApplicationComponent from './applicant/ApplicationComponent.jsx'
 import ApplicationsComponent from './employee/ApplicationsComponent.jsx'
-import AddEditApplicationComponent from './employee/AddEditApplication.jsx'
+import AddEditApplicationComponent from './employee/AddEditApplicationComponent.jsx'
 
 class PropertyManagement extends Component{
     render() {

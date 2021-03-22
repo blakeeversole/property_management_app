@@ -17,7 +17,7 @@ class ApplicationsComponent extends Component{
 
     componentDidMount(){
         this.refreshProperties(); 
-        this.refreshApplications();
+        // this.refreshApplications();
     }
 
     refreshProperties(){

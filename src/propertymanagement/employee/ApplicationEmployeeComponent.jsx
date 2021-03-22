@@ -41,7 +41,18 @@ class ApplicationEmployeeComponent extends Component{
     }
 
     updateApplicationClicked(id){
-        this.props.history.push(`/applicationedit/${id}`)
+        let application = {
+            legalName : this.state.legalName,
+            creditScore : this.state.creditScore,
+            monthlyIncome : this.state.monthlyIncome,
+            moveInDate : this.state.moveInDate,
+            propertyId : this.state.propertyId,
+            propertyAddress : this.state.propertyAddress,
+            userId : this.state.userId,
+            userName : this.state.userName
+        }
+
+        this.props.history.push(`/applicationedit/${id}`, application)
     }
 
     render(){

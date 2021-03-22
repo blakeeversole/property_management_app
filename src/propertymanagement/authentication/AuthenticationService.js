@@ -6,28 +6,28 @@ export const SESSION_TOKEN = 'authToken'
 export const USER_ROLE = 'userRole'
 
 class AuthenticationService{    
-    async executeJwtAuthenticationService(username, password){
+    executeJwtAuthenticationService(username, password){
         return axios.post(`${API_URL}/authenticate`, {
             username,
             password
         })
     } 
 
-    async setSessionStorage(username, token){
+    setSessionStorage(username, token){
         sessionStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, username);
         sessionStorage.setItem(SESSION_TOKEN, token);
     }
 
-    async returnUserRole(username){
-        let token = await this.getJWTTokenHeader();        
+    returnUserRole(username){
+        let token = this.getJWTTokenHeader();        
         return axios.get(`${JPA_API_URL}/user/${username}`, {headers: { authorization: `${token}` }});       
     }
 
-    async getJWTTokenHeader(token) {
-        if(token === undefined && await this.isUserLoggedIn()){
+    getJWTTokenHeader(token) {
+        if(token === undefined && this.isUserLoggedIn()){
             return 'Bearer ' + sessionStorage.getItem(SESSION_TOKEN)
         }
-        else if (await this.isUserLoggedIn()){
+        else if (this.isUserLoggedIn()){
             return 'Bearer ' + token
         }        
     }   

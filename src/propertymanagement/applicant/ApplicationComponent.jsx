@@ -39,10 +39,10 @@ class ApplicationComponent extends Component{
           )
     }
 
-    async onSubmit(values){ 
+    onSubmit(values){ 
         let username = AuthenticationService.getLoggedInUserName()
         
-        await PropertyManagementService.retrieveUser(username)
+        PropertyManagementService.retrieveUser(username)
         .then(response => this.setState({
             userId : response.data.id,
             username : response.data.username

@@ -23,8 +23,8 @@ class LoginComponent extends Component{
             })
     }
 
-    async loginClicked(){            
-        await AuthenticationService.executeJwtAuthenticationService(this.state.username, this.state.password)
+    loginClicked(){            
+        AuthenticationService.executeJwtAuthenticationService(this.state.username, this.state.password)
         .then( (response) => {
             AuthenticationService.setSessionStorage(this.state.username, response.data.token)
             AuthenticationService.returnUserRole(this.state.username)

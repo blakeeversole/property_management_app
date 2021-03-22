@@ -11,8 +11,8 @@ class ApplicantDashboardComponent extends Component{
         this.applicationButtonClicked = this.applicationButtonClicked.bind(this)        
     }
 
-    async componentDidMount(){        
-        await PropertyManagementService.getIfUserHasApplied()
+    componentDidMount(){        
+        PropertyManagementService.getIfUserHasApplied()
         .then((response) =>{
             if(response.data !== '') {
                 this.setState({message:"Congratulations! You submitted an application! A property management representative will contact you within 3 business days."})

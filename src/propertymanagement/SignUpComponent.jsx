@@ -32,7 +32,7 @@ class SignUpComponent extends Component{
         return errors
     }
 
-    async onSubmit(values){ 
+    onSubmit(values){ 
         //let username = AuthenticationService.getLoggedInUserName()
 
         let user = {
@@ -42,7 +42,7 @@ class SignUpComponent extends Component{
             role: "Applicant"
         }
 
-        await AuthenticationService.executeJwtAuthenticationService("applicant", "applicant")
+        AuthenticationService.executeJwtAuthenticationService("applicant", "applicant")
         .then( (response) => {
             AuthenticationService.setSessionStorage("applicant", response.data.token)
             AuthenticationService.returnUserRole("applicant")
@@ -52,13 +52,13 @@ class SignUpComponent extends Component{
         }) 
 
         
-        await PropertyManagementService.createUser(user)   
+        PropertyManagementService.createUser(user)   
         AuthenticationService.logout()
 
         this.state.username = values.username
         this.state.password = values.password
                 
-        await AuthenticationService.executeJwtAuthenticationService(this.state.username, this.state.password)
+        AuthenticationService.executeJwtAuthenticationService(this.state.username, this.state.password)
         .then( (response) => {
             AuthenticationService.setSessionStorage(this.state.username, response.data.token)
             AuthenticationService.returnUserRole(this.state.username)

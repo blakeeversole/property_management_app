@@ -5,82 +5,82 @@ import AuthenticationService from '../propertymanagement/authentication/Authenti
 class PropertyManagementService{
 
     //Applications
-    async createApplication(application) {
-        let token = await AuthenticationService.getJWTTokenHeader();
+    createApplication(application) {
+        let token = AuthenticationService.getJWTTokenHeader();
         return axios.post(`${JPA_API_URL}/application`, application, {headers: { authorization: `${token}` }});
     }
 
-    async updateProperty(id, application) {
-        let token = await AuthenticationService.getJWTTokenHeader();
+    updateApplication(id, application) {
+        let token = AuthenticationService.getJWTTokenHeader();
         return axios.put(`${JPA_API_URL}/application/${id}`, application, {headers: { authorization: `${token}` }});
     }
 
-    async getAllApplications(){
-        let token = await AuthenticationService.getJWTTokenHeader();        
+    getAllApplications(){
+        let token = AuthenticationService.getJWTTokenHeader();        
         return axios.get(`${JPA_API_URL}/applications`, {headers: { authorization: `${token}` }});
     }
 
-    async getAllApplicationsWithPropertyId(propertyID){
-        let token = await AuthenticationService.getJWTTokenHeader();        
+    getAllApplicationsWithPropertyId(propertyID){
+        let token = AuthenticationService.getJWTTokenHeader();        
         return axios.get(`${JPA_API_URL}/applications/${propertyID}`, {headers: { authorization: `${token}` }});
     }
     
-    async getIfUserHasApplied() {
+    getIfUserHasApplied() {
         let username = AuthenticationService.getLoggedInUserName();
         let userId;
-        await this.retrieveUser(username)
+        this.retrieveUser(username)
         .then((response) => 
             {userId = response.data.id}
         )
 
-        let token = await AuthenticationService.getJWTTokenHeader();
+        let token = AuthenticationService.getJWTTokenHeader();
         return axios.get(`${JPA_API_URL}/application-check/${userId}`, {headers: { authorization: `${token}` }});
     }
 
-    async retrieveApplication(applicationID){
-        let token = await AuthenticationService.getJWTTokenHeader();        
+    retrieveApplication(applicationID){
+        let token = AuthenticationService.getJWTTokenHeader();        
         return axios.get(`${JPA_API_URL}/application/${applicationID}`, {headers: { authorization: `${token}` }});
     }
 
     //Users
-    async getAllUsers(){
-        let token = await AuthenticationService.getJWTTokenHeader();        
+    getAllUsers(){
+        let token = AuthenticationService.getJWTTokenHeader();        
         return axios.get(`${JPA_API_URL}/users`, {headers: { authorization: `${token}` }});
     }    
 
-    async retrieveUser(username){
-        let token = await AuthenticationService.getJWTTokenHeader();        
+    retrieveUser(username){
+        let token = AuthenticationService.getJWTTokenHeader();        
         return axios.get(`${JPA_API_URL}/user/${username}`, {headers: { authorization: `${token}` }});
     }
 
-    async createUser(user) {
-        let token = await AuthenticationService.getJWTTokenHeader();
+    createUser(user) {
+        let token = AuthenticationService.getJWTTokenHeader();
         return axios.post(`${JPA_API_URL}/users`, user, {headers: { authorization: `${token}` }});
     }
     
     //Properties
-    async getAllProperties(){
-        let token = await AuthenticationService.getJWTTokenHeader();        
+    getAllProperties(){
+        let token = AuthenticationService.getJWTTokenHeader();        
         return axios.get(`${JPA_API_URL}/property-management`, {headers: { authorization: `${token}` }});
     }
 
-    async retrieveProperty(id){
-        let token = await AuthenticationService.getJWTTokenHeader();        
+    retrieveProperty(id){
+        let token = AuthenticationService.getJWTTokenHeader();        
         return axios.get(`${JPA_API_URL}/property-management/${id}`, {headers: { authorization: `${token}` }});
     }
 
-    async deleteProperty(id) {
-        let token = await AuthenticationService.getJWTTokenHeader();        
+    deleteProperty(id) {
+        let token = AuthenticationService.getJWTTokenHeader();        
         return axios.delete(`${JPA_API_URL}/property-management/${id}`, {headers: { authorization: `${token}` }});
     }
 
-    async createProperty(property) {
-        let token = await AuthenticationService.getJWTTokenHeader();
+    createProperty(property) {
+        let token = AuthenticationService.getJWTTokenHeader();
         return axios.post(`${JPA_API_URL}/property-management`, property, {headers: { authorization: `${token}` }});
     }
 
-    async updateProperty(id, property) {
-        let token = await AuthenticationService.getJWTTokenHeader();
+    updateProperty(id, property) {
+        let token = AuthenticationService.getJWTTokenHeader();
         return axios.put(`${JPA_API_URL}/property-management/${id}`, property, {headers: { authorization: `${token}` }});
     }
 }

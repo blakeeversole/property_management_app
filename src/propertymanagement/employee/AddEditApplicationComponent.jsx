@@ -11,61 +11,34 @@ class AddEditApplicationComponent extends Component{
         this.state = {
             properties : [],
             id : this.props.match.params.id,
-            legalName : '',
-            creditScore : '',
-            monthlyIncome : '',
-            moveInDate : '',
-            propertyId : '',
-            propertyAddress : '',
-            userId : '',
-            userName : ''
+            legalName : this.props.location.state.legalName,
+            creditScore : this.props.location.state.creditScore,
+            monthlyIncome : this.props.location.state.monthlyIncome,
+            moveInDate : this.props.location.state.moveInDate,
+            propertyId : this.props.location.state.propertyId,
+            propertyAddress : this.props.location.state.propertyAddress,
+            userId : this.props.location.state.userId,
+            userName : this.props.location.state.userName
         }
 
         this.onSubmit = this.onSubmit.bind(this)
-        this.validate = this.validate.bind(this)
     }
 
     componentDidMount(){
-        this.refreshProperties(); 
-        if(this.state.id==='0'){
-            return
-        }
-
-        PropertyManagementService.retrieveApplication(this.state.id)
-                .then(response => this.setState({
-                    legalName : response.data.legalName,
-                    creditScore : response.data.creditScore,
-                    monthlyIncome : response.data.monthlyIncome,
-                    moveInDate : response.data.moveInDate,
-                    propertyId : response.data.propertyId,
-                    propertyAddress : response.data.propertyAddress,
-                    userId : response.data.userId,
-                    userName : response.data.userName
-                }))
-    }
-
-    refreshProperties(){
         PropertyManagementService.getAllProperties()
           .then(
               response => {
                 this.setState({properties : response.data})
             }
           )
-    }
 
-    validate(values){
-        let errors = {}
-        if(!values.address1){
-            errors.address1 = 'Enter an address'
+        if(this.state.id==='0'){
+            return
         }
-
-        return errors
     }
 
     onSubmit(values){ 
-        //let username = AuthenticationService.getLoggedInUserName()
-
-        let property = {
+        let application = {
             id: this.state.id,
             legalName : values.legalName,
             creditScore : values.creditScore,
@@ -77,7 +50,7 @@ class AddEditApplicationComponent extends Component{
             userName : values.userName
         }
 
-        PropertyManagementService.updateApplication(this.state.id, property)
+        PropertyManagementService.updateApplication(this.state.id, application)
         .then(() => this.props.history.push(`/applications/${this.state.id}`))
         
     }
@@ -91,9 +64,6 @@ class AddEditApplicationComponent extends Component{
                     <Formik
                         initialValues={{legalName, creditScore, monthlyIncome, moveInDate, propertyId, propertyAddress, userId, userName}}
                         onSubmit={this.onSubmit}
-                        validateOnChange={false}
-                        validateOnBlur={false}
-                        validate={this.validate}
                         enableReinitialize={true}
                     >
                         {

@@ -46,8 +46,6 @@ class AddEditPropertyComponent extends Component{
     }
 
     onSubmit(values){ 
-        //let username = AuthenticationService.getLoggedInUserName()
-
         let property = {
             id: this.state.id,
             address1: values.address1,
