@@ -44,7 +44,7 @@ class UsersComponent extends Component{
                             <tr>
                                 <th>ID</th>
                                 <th>Username</th>
-                                <th>Role</th>
+                                <th>Roles</th>
                             </tr>
                         </thead>
                         <tbody>
