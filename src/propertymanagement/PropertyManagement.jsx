@@ -10,13 +10,14 @@ import PrivateRoute from './authentication/PrivateRoute.jsx'
 import EmployeeDashboardComponent from './employee/EmployeeDashboardComponent.jsx'
 import UsersComponent from './employee/UsersComponent.jsx'
 import AddUserComponent from './employee/AddUserComponent.jsx'
+import ApplicationEmployeeComponent from './employee/ApplicationEmployeeComponent.jsx'
 import {Role} from '../Constants'
 import TenantDashboardComponent from './tenant/TenantDashboardComponent.jsx'
 import SignUpComponent from './SignUpComponent.jsx'
 import ApplicantDashboardComponent from './applicant/ApplicantDashboardComponent.jsx'
 import ApplicationComponent from './applicant/ApplicationComponent.jsx'
 import ApplicationsComponent from './employee/ApplicationsComponent.jsx'
-import AddEditApplicationComponent from './employee/AddEditApplicationComponent.jsx'
+import AddEditApplicationComponent from './employee/AddEditApplication.jsx'
 
 class PropertyManagement extends Component{
     render() {
@@ -36,7 +37,8 @@ class PropertyManagement extends Component{
                             <PrivateRoute path="/user" roles={[Role.Employee]} component={AddUserComponent}/>   
                             <PrivateRoute path="/properties/:id" roles={[Role.Employee]} component={AddEditPropertyComponent}/>                         
                             <PrivateRoute path="/properties" roles={[Role.Employee]} component={PropertiesComponent}/>  
-                            <PrivateRoute path="/applications/:id" roles={[Role.Employee]} component={AddEditApplicationComponent}/>                             
+                            <PrivateRoute path="/applicationedit/:id" roles={[Role.Employee]} component={AddEditApplicationComponent}/>   
+                            <PrivateRoute path="/applications/:id" roles={[Role.Employee]} component={ApplicationEmployeeComponent}/>                             
                             <PrivateRoute path="/applications" roles={[Role.Employee]} component={ApplicationsComponent}/>                    
                             <PrivateRoute path="/employeedashboard" roles={[Role.Employee]} component={EmployeeDashboardComponent}/>   
                             {/* TENANT ROUTES */}      

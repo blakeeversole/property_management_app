@@ -10,6 +10,11 @@ class PropertyManagementService{
         return axios.post(`${JPA_API_URL}/application`, application, {headers: { authorization: `${token}` }});
     }
 
+    async updateProperty(id, application) {
+        let token = await AuthenticationService.getJWTTokenHeader();
+        return axios.put(`${JPA_API_URL}/application/${id}`, application, {headers: { authorization: `${token}` }});
+    }
+
     async getAllApplications(){
         let token = await AuthenticationService.getJWTTokenHeader();        
         return axios.get(`${JPA_API_URL}/applications`, {headers: { authorization: `${token}` }});
