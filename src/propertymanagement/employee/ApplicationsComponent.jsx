@@ -38,6 +38,14 @@ class ApplicationsComponent extends Component{
               }
             )
         }
+        else if(propertyIdentifier === "archived"){
+            PropertyManagementService.getAllArchivedApplications()
+            .then(
+                response => {
+                  this.setState({applications : response.data})
+              }
+            )
+        }
         else{
             PropertyManagementService.getAllApplicationsWithPropertyId(propertyIdentifier)
             .then(
@@ -74,6 +82,7 @@ class ApplicationsComponent extends Component{
                                         <option  key={property.id} value={property.id}>{property.address1}, {property.address2}, {property.city}, {property.state}, {property.zipcode}</option>
                                     )
                                 }
+                            <option value="archived">Archived</option>
                         </select>
                     </div>
                     <table className="table">

@@ -18,7 +18,8 @@ class AddEditApplicationComponent extends Component{
             propertyId : this.props.location.state.propertyId,
             propertyAddress : this.props.location.state.propertyAddress,
             userId : this.props.location.state.userId,
-            userName : this.props.location.state.userName
+            userName : this.props.location.state.userName,
+            isArchived: this.props.location.state.isArchived
         }
 
         this.onSubmit = this.onSubmit.bind(this)

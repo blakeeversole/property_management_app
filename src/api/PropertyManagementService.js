@@ -20,6 +20,11 @@ class PropertyManagementService{
         return axios.get(`${JPA_API_URL}/applications`, {headers: { authorization: `${token}` }});
     }
 
+    getAllArchivedApplications(){
+        let token = AuthenticationService.getJWTTokenHeader();        
+        return axios.get(`${JPA_API_URL}/applications-archived`, {headers: { authorization: `${token}` }});
+    }
+
     getAllApplicationsWithPropertyId(propertyID){
         let token = AuthenticationService.getJWTTokenHeader();        
         return axios.get(`${JPA_API_URL}/applications/${propertyID}`, {headers: { authorization: `${token}` }});
@@ -67,6 +72,11 @@ class PropertyManagementService{
     retrieveProperty(id){
         let token = AuthenticationService.getJWTTokenHeader();        
         return axios.get(`${JPA_API_URL}/property-management/${id}`, {headers: { authorization: `${token}` }});
+    }
+
+    allowedToDeleteProperty(id){
+        let token = AuthenticationService.getJWTTokenHeader();        
+        return axios.get(`${JPA_API_URL}/property-management-allow-delete/${id}`, {headers: { authorization: `${token}` }});
     }
 
     deleteProperty(id) {

@@ -11,8 +11,6 @@ class PropertiesComponent extends Component{
         
         this.refreshProperties = this.refreshProperties.bind(this)
         this.addPropertyClicked = this.addPropertyClicked.bind(this)
-        this.updatePropertyClicked = this.updatePropertyClicked.bind(this)
-        this.deletePropertyClicked = this.deletePropertyClicked.bind(this)
     }
 
     componentDidMount(){
@@ -32,19 +30,8 @@ class PropertiesComponent extends Component{
         this.props.history.push('/properties/0')
     }
 
-    updatePropertyClicked(id){
-        this.props.history.push(`/properties/${id}`)
-    }
-
-    deletePropertyClicked(id) {
-        PropertyManagementService.deleteProperty(id)
-            .then(
-                response => {
-                    this.setState({ message: `Delete of todo ${id} Successful` })
-                    this.refreshProperties()
-                }
-            )
-
+    viewPropertyClicked(id){
+        this.props.history.push(`/propertyprofile/${id}`)
     }
 
     render(){
@@ -58,8 +45,7 @@ class PropertiesComponent extends Component{
                             <tr>
                                 <th>ID</th>
                                 <th>Address</th>
-                                <th>Update</th>
-                                <th>Delete</th>
+                                <th>View</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -71,8 +57,8 @@ class PropertiesComponent extends Component{
                                         <td>{property.address1} {property.address2} <br></br>
                                         {property.city} {property.state} {property.zipcode}
                                         </td>
-                                        <td><button onClick={() => this.updatePropertyClicked(property.id)} className="btn btn-success">Update</button></td>
-                                        <td><button onClick={() => this.deletePropertyClicked(property.id)} className="btn btn-warning">Delete</button></td>
+                                        <td><button onClick={() => this.viewPropertyClicked(property.id)} className="btn btn-success">View</button></td>
+                                        
                                     </tr>
                                 )                            
                             }

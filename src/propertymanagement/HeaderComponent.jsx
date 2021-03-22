@@ -8,8 +8,6 @@ class HeaderComponent extends Component{
     render(){
         const isUserLoggedIn = AuthenticationService.isUserLoggedIn()
         const role = AuthenticationService.getCurrentUserRole()
-        
-        console.log(isUserLoggedIn);
 
         return(
             <header>

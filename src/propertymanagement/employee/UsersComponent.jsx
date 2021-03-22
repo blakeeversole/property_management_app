@@ -49,20 +49,18 @@ class UsersComponent extends Component{
                         </thead>
                         <tbody>
                             {
-                                this.state.users.map((user, index) => (
-                                        <>
-                                            <tr key={user.id}>
-                                                <td>{user.id}</td>
-                                                <td>{user.username}</td>
-                                                <td>
-                                                    {user.authorities.map((authority, index) => (
-                                                        <div key={index}>
-                                                            <p>{authority.authority}</p>
-                                                        </div>
-                                                    ))}
-                                                </td>
-                                            </tr>
-                                        </>
+                                this.state.users.map((user, index) => (                                        
+                                        <tr key={user.id}>
+                                            <td>{user.id}</td>
+                                            <td>{user.username}</td>
+                                            <td>
+                                                {user.authorities.map((authority, index) => (
+                                                    <div key={index}>
+                                                        <p>{authority.authority}</p>
+                                                    </div>
+                                                ))}
+                                            </td>
+                                        </tr>
                                     )
                                 )                   
                             }

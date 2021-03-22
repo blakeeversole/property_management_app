@@ -58,10 +58,10 @@ class AddEditPropertyComponent extends Component{
 
         if (this.state.id==='0') {
             PropertyManagementService.createProperty(property)
-            .then(() => this.props.history.push('/properties'))
+            .then(() => this.props.history.push('/properties/'))
         } else {
             PropertyManagementService.updateProperty(this.state.id, property)
-            .then(() => this.props.history.push('/properties'))
+            .then(() => this.props.history.push(`/propertyprofile/${this.state.id}`))
         }
     }
 

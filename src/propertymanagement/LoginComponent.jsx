@@ -39,8 +39,6 @@ class LoginComponent extends Component{
                 if(response.data.role === 'Applicant'){
                     this.props.history.push(`/applicantdashboard`)
                 }
-                
-                console.log(sessionStorage);
             })     
         }).catch( () => {
             this.setState({showSuccessMessage:false})

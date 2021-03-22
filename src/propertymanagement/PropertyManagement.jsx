@@ -18,6 +18,7 @@ import ApplicantDashboardComponent from './applicant/ApplicantDashboardComponent
 import ApplicationComponent from './applicant/ApplicationComponent.jsx'
 import ApplicationsComponent from './employee/ApplicationsComponent.jsx'
 import AddEditApplicationComponent from './employee/AddEditApplicationComponent.jsx'
+import PropertyProfileComponent from './employee/PropertyProfileComponent.jsx'
 
 class PropertyManagement extends Component{
     render() {
@@ -35,7 +36,8 @@ class PropertyManagement extends Component{
                             {/* EMPLOYEE ROUTES */}
                             <PrivateRoute path="/users" roles={[Role.Employee]} component={UsersComponent}/>  
                             <PrivateRoute path="/user" roles={[Role.Employee]} component={AddUserComponent}/>   
-                            <PrivateRoute path="/properties/:id" roles={[Role.Employee]} component={AddEditPropertyComponent}/>                         
+                            <PrivateRoute path="/properties/:id" roles={[Role.Employee]} component={AddEditPropertyComponent}/>   
+                            <PrivateRoute path="/propertyprofile/:id" roles={[Role.Employee]} component={PropertyProfileComponent}/>                       
                             <PrivateRoute path="/properties" roles={[Role.Employee]} component={PropertiesComponent}/>  
                             <PrivateRoute path="/applicationedit/:id" roles={[Role.Employee]} component={AddEditApplicationComponent}/>   
                             <PrivateRoute path="/applications/:id" roles={[Role.Employee]} component={ApplicationEmployeeComponent}/>                             
