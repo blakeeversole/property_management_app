@@ -6,7 +6,7 @@ export const SESSION_TOKEN = 'authToken'
 export const USER_ROLE = 'userRole'
 
 class AuthenticationService{    
-    executeJwtAuthenticationService(username, password){
+    async executeJwtAuthenticationService(username, password){
         return axios.post(`${API_URL}/authenticate`, {
             username,
             password

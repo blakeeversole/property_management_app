@@ -30,10 +30,10 @@ class PropertyManagementService{
         return axios.get(`${JPA_API_URL}/applications/${propertyID}`, {headers: { authorization: `${token}` }});
     }
     
-    getIfUserHasApplied() {
+    async getIfUserHasApplied() {
         let username = AuthenticationService.getLoggedInUserName();
         let userId;
-        this.retrieveUser(username)
+        await this.retrieveUser(username)
         .then((response) => 
             {userId = response.data.id}
         )

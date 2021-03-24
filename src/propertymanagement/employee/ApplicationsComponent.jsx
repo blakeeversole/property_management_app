@@ -99,7 +99,7 @@ class ApplicationsComponent extends Component{
                                     application => 
                                     <tr key={application.id}>
                                         <td>{application.id}</td>
-                                        <td>{application.legalName}</td>
+                                        <td>{application.firstName} {application.lastName}</td>
                                         {/* <td><button onClick={() => this.updatePropertyClicked(property.id)} className="btn btn-success">Update</button></td> */}
                                         <td><button className="btn btn-success" onClick={() => this.viewApplicationClicked(application.id)}>View</button></td>
                                     </tr>

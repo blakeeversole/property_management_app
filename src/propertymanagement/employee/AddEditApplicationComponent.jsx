@@ -11,7 +11,8 @@ class AddEditApplicationComponent extends Component{
         this.state = {
             properties : [],
             id : this.props.match.params.id,
-            legalName : this.props.location.state.legalName,
+            firstName : this.props.location.state.firstName,
+            lastName : this.props.location.state.lastName,
             creditScore : this.props.location.state.creditScore,
             monthlyIncome : this.props.location.state.monthlyIncome,
             moveInDate : this.props.location.state.moveInDate,
@@ -41,7 +42,8 @@ class AddEditApplicationComponent extends Component{
     onSubmit(values){ 
         let application = {
             id: this.state.id,
-            legalName : values.legalName,
+            firstName : values.firstName,
+            lastName : values.lastName,
             creditScore : values.creditScore,
             monthlyIncome : values.monthlyIncome,
             moveInDate : values.moveInDate,
@@ -57,13 +59,13 @@ class AddEditApplicationComponent extends Component{
     }
 
     render(){
-        let {legalName, creditScore, monthlyIncome, moveInDate, propertyId, propertyAddress, userId, userName} = this.state
+        let {firstName, lastName, creditScore, monthlyIncome, moveInDate, propertyId, propertyAddress, userId, userName} = this.state
         return (
             <div>
-                <h1 className="text-center">Edit {this.state.legalName}'s Application</h1>
+                <h1 className="text-center">Edit {this.state.firstName} {this.state.lastName}'s Application</h1>
                 <div className="container">
                     <Formik
-                        initialValues={{legalName, creditScore, monthlyIncome, moveInDate, propertyId, propertyAddress, userId, userName}}
+                        initialValues={{firstName, lastName, creditScore, monthlyIncome, moveInDate, propertyId, propertyAddress, userId, userName}}
                         onSubmit={this.onSubmit}
                         enableReinitialize={true}
                     >
@@ -71,9 +73,13 @@ class AddEditApplicationComponent extends Component{
                             (props) =>(
                                 <Form>                                   
                                     <fieldset className="form-group">
-                                        <label>Legal Name</label>
-                                        <Field className="form-control" type="text" name="legalName"/>
-                                    </fieldset>      
+                                        <label>First Name</label>
+                                        <Field className="form-control" type="text" name="firstName"/>
+                                    </fieldset>                                        
+                                    <fieldset className="form-group">
+                                        <label>Last Name</label>
+                                        <Field className="form-control" type="text" name="lastName"/>
+                                    </fieldset>     
                                     <fieldset className="form-group">
                                         <label>Credit Score</label>
                                         <Field className="form-control" type="text" name="creditScore"/>

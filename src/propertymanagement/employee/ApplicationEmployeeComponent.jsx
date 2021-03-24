@@ -10,7 +10,8 @@ class ApplicationEmployeeComponent extends Component{
 
         this.state = {
             id : this.props.match.params.id,
-            legalName : '',
+            firstName : '',
+            lastName : '',
             creditScore : '',
             monthlyIncome : '',
             moveInDate : '',
@@ -32,7 +33,8 @@ class ApplicationEmployeeComponent extends Component{
 
         PropertyManagementService.retrieveApplication(this.state.id)
                 .then(response => this.setState({
-                    legalName : response.data.legalName,
+                    firstName : response.data.firstName,
+                    lastName : response.data.lastName,
                     creditScore : response.data.creditScore,
                     monthlyIncome : response.data.monthlyIncome,
                     moveInDate : response.data.moveInDate,
@@ -46,7 +48,8 @@ class ApplicationEmployeeComponent extends Component{
 
     updateApplicationClicked(id){
         let application = {
-            legalName : this.state.legalName,
+            firstName : this.state.firstName,
+            lastName : this.state.lastName,
             creditScore : this.state.creditScore,
             monthlyIncome : this.state.monthlyIncome,
             moveInDate : this.state.moveInDate,
@@ -79,7 +82,8 @@ class ApplicationEmployeeComponent extends Component{
         if(window.confirm(message)){
             let application = {
                 id: this.state.id,
-                legalName : this.state.legalName,
+                firstName : this.state.firstName,
+                lastName : this.state.lastName,
                 creditScore : this.state.creditScore,
                 monthlyIncome : this.state.monthlyIncome,
                 moveInDate : this.state.moveInDate,
@@ -104,7 +108,7 @@ class ApplicationEmployeeComponent extends Component{
                         <div className="col-6">
                             <div className="row">
                                 <div className="col-4">Legal Name: </div>
-                                <div className="col-8">{this.state.legalName}</div>
+                                <div className="col-8">{this.state.firstName} {this.state.lastName}</div>
                             </div>
                             <div className="row">
                                 <div className="col-4">Credit Score: </div>

@@ -32,9 +32,7 @@ class SignUpComponent extends Component{
         return errors
     }
 
-    onSubmit(values){ 
-        //let username = AuthenticationService.getLoggedInUserName()
-
+    async onSubmit(values){ 
         let user = {
             id: 0,
             username: values.username,
@@ -42,9 +40,9 @@ class SignUpComponent extends Component{
             role: "Applicant"
         }
 
-        AuthenticationService.executeJwtAuthenticationService("applicant", "applicant")
+        await AuthenticationService.executeJwtAuthenticationService("applicant", "applicant")
         .then( (response) => {
-            AuthenticationService.setSessionStorage("applicant", response.data.token)
+             AuthenticationService.setSessionStorage("applicant", response.data.token)
             AuthenticationService.returnUserRole("applicant")
         }).catch( () => {
             this.setState({showSuccessMessage:false})
@@ -52,13 +50,13 @@ class SignUpComponent extends Component{
         }) 
 
         
-        PropertyManagementService.createUser(user)   
+        await PropertyManagementService.createUser(user)   
         AuthenticationService.logout()
 
         this.state.username = values.username
         this.state.password = values.password
                 
-        AuthenticationService.executeJwtAuthenticationService(this.state.username, this.state.password)
+        await AuthenticationService.executeJwtAuthenticationService(this.state.username, this.state.password)
         .then( (response) => {
             AuthenticationService.setSessionStorage(this.state.username, response.data.token)
             AuthenticationService.returnUserRole(this.state.username)
@@ -78,13 +76,10 @@ class SignUpComponent extends Component{
             this.setState({showSuccessMessage:false})
             this.setState({hasLoginFailed:true})
         }) 
-
-        
-
     }
 
     render(){
-        let {username, password, role} = this.state
+        let {username, password} = this.state
         return (
             <div>
                 <h1 className="text-center">Application</h1>

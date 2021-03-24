@@ -13,11 +13,13 @@ class ApplicationComponent extends Component{
             id : this.props.match.params.id,
             userId : '',
             username : '',
-            legalName : '',
+            firstName : '',
+            lastName : '',
             creditScore : '',
             monthlyIncome : '',
             moveInDate : '',
-            propertyId : ''
+            propertyId : '',
+            propertyAddress : ''
         }
         
         this.refreshProperties = this.refreshProperties.bind(this)
@@ -39,10 +41,10 @@ class ApplicationComponent extends Component{
           )
     }
 
-    onSubmit(values){ 
+    async onSubmit(values){ 
         let username = AuthenticationService.getLoggedInUserName()
         
-        PropertyManagementService.retrieveUser(username)
+        await PropertyManagementService.retrieveUser(username)
         .then(response => this.setState({
             userId : response.data.id,
             username : response.data.username
@@ -51,11 +53,14 @@ class ApplicationComponent extends Component{
         let application = {
             id: 0,
             userId: this.state.userId,
-            legalName : values.legalName,
+            username: this.state.username,
+            firstName : values.firstName,
+            lastName : values.lastName,
             creditScore : values.creditScore,
             monthlyIncome : values.monthlyIncome,
             moveInDate : values.moveInDate,
-            propertyId : values.propertyId
+            propertyId : values.propertyId,
+            propertyAddress : values.propertyAddress
         }
 
         PropertyManagementService.createApplication(application)
@@ -63,13 +68,13 @@ class ApplicationComponent extends Component{
     }
 
     render(){
-        let {userId, legalName, creditScore, monthlyIncome, moveInDate, propertyId} = this.state
+        let {userId, firstName, lastName, creditScore, monthlyIncome, moveInDate, propertyId, propertyAddress} = this.state
         return (
             <div>
                 <h1 className="text-center">Application</h1>
                 <div className="container">
                     <Formik
-                        initialValues={{userId, legalName, creditScore, monthlyIncome, moveInDate, propertyId}}
+                        initialValues={{userId, firstName, lastName, creditScore, monthlyIncome, moveInDate, propertyId, propertyAddress}}
                         onSubmit={this.onSubmit}
                         validateOnChange={false}
                         validateOnBlur={false}
@@ -81,8 +86,12 @@ class ApplicationComponent extends Component{
                                 <Form>
                                     <ErrorMessage name="address1" conponent="div" className="alert alert-warning"/>                                    
                                     <fieldset className="form-group">
-                                        <label>Legal Name</label>
-                                        <Field className="form-control" type="text" name="legalName"/>
+                                        <label>First Name</label>
+                                        <Field className="form-control" type="text" name="firstName"/>
+                                    </fieldset>  
+                                    <fieldset className="form-group">
+                                        <label>Last Name</label>
+                                        <Field className="form-control" type="text" name="lastName"/>
                                     </fieldset>      
                                     <fieldset className="form-group">
                                         <label>Credit Score</label>
