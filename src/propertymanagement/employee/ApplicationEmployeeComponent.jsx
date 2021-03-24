@@ -22,7 +22,7 @@ class ApplicationEmployeeComponent extends Component{
 
         this.updateApplicationClicked = this.updateApplicationClicked.bind(this)
         this.acceptApplication = this.acceptApplication.bind(this)
-        this.archiveApplication = this.archiveApplication.bind(this)
+        this.updateArchiveApplication = this.updateArchiveApplication.bind(this)
     }
 
     componentDidMount(){
@@ -67,8 +67,16 @@ class ApplicationEmployeeComponent extends Component{
         }
     }
 
-    archiveApplication(){
-        if(window.confirm('Are you sure you want to ARCHIVE this application')){
+    updateArchiveApplication(isArchivedVar){
+        var message = '';
+        if(isArchivedVar === true){
+            message = 'Are you sure you want to ARCHIVE this application?'
+        }
+        else{
+            message = 'Are you sure you want to REMOVE ARCHIVE of this application?'
+        }           
+
+        if(window.confirm(message)){
             let application = {
                 id: this.state.id,
                 legalName : this.state.legalName,
@@ -79,7 +87,7 @@ class ApplicationEmployeeComponent extends Component{
                 propertyAddress : this.state.propertyAddress,
                 userId : this.state.userId,
                 userName : this.state.userName,
-                isArchived: true
+                isArchived: isArchivedVar
             }
 
             PropertyManagementService.updateApplication(this.state.id, application)
@@ -124,7 +132,12 @@ class ApplicationEmployeeComponent extends Component{
                             </div>
                             {this.state.isArchived === false &&
                                 <div className="col-12 text-center">
-                                    <button className="btn btn-danger" onClick={() => this.archiveApplication()}>Archive</button>
+                                    <button className="btn btn-danger" onClick={() => this.updateArchiveApplication(true)}>Archive</button>
+                                </div>
+                            }
+                            {this.state.isArchived === true &&
+                                <div className="col-12 text-center">
+                                    <button className="btn btn-danger" onClick={() => this.updateArchiveApplication(false)}>Remove from Archived</button>
                                 </div>
                             }
                         </div>

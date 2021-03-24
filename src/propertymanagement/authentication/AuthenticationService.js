@@ -10,7 +10,9 @@ class AuthenticationService{
         return axios.post(`${API_URL}/authenticate`, {
             username,
             password
-        })
+        }).catch((error) => {
+            console.error(error);
+          });
     } 
 
     setSessionStorage(username, token){

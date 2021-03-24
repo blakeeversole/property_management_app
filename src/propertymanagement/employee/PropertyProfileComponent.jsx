@@ -46,8 +46,10 @@ class PropertyProfileComponent extends Component{
         PropertyManagementService.allowedToDeleteProperty(id)
         .then(response => {
                 if(response.data === true){        
+                    if(window.confirm('Are you sure you want to delete this property?')){
                     PropertyManagementService.deleteProperty(id)            
                     .then(() => this.props.history.push('/properties/'))
+                    }
                 }
                 else{
                     this.setState(
