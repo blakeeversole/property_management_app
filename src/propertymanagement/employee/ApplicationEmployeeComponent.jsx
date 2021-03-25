@@ -64,9 +64,16 @@ class ApplicationEmployeeComponent extends Component{
 
     acceptApplication(){
         if(window.confirm(`Are you sure you want to ACCEPT this application for ${this.state.propertyAddress}`)){
-            //move applicant to tenant role
-            //allow all applicants to be archived and stay attached to property
-            //
+            let tenant = {
+                id: 0,
+                firstName : this.state.firstName,
+                lastName : this.state.lastName,
+                applicationId : this.state.id,
+                userId : this.state.userId
+            }
+
+            PropertyManagementService.createTenant(tenant)
+            .then(() => this.props.history.push('/applications'))
         }
     }
 

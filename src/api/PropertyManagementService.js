@@ -4,6 +4,31 @@ import AuthenticationService from '../propertymanagement/authentication/Authenti
 
 class PropertyManagementService{
 
+    //Lease
+    retrieveLease(leaseID){
+        let token = AuthenticationService.getJWTTokenHeader();        
+        return axios.get(`${JPA_API_URL}/lease/${leaseID}`, {headers: { authorization: `${token}` }});
+    }
+    
+    //Tenant
+    createTenant(tenant) {
+        let token = AuthenticationService.getJWTTokenHeader();
+        return axios.post(`${JPA_API_URL}/tenant`, tenant, {headers: { authorization: `${token}` }});
+    }
+    
+    async getIfUserHasLease() {
+        let username = AuthenticationService.getLoggedInUserName();
+        let userId;
+        await this.retrieveUser(username)
+        .then((response) => 
+            {userId = response.data.id}
+        )
+
+        let token = AuthenticationService.getJWTTokenHeader();
+        return axios.get(`${JPA_API_URL}/lease-check/${userId}`, {headers: { authorization: `${token}` }});
+    }
+
+
     //Applications
     createApplication(application) {
         let token = AuthenticationService.getJWTTokenHeader();

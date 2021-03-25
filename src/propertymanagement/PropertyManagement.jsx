@@ -19,6 +19,7 @@ import ApplicationComponent from './applicant/ApplicationComponent.jsx'
 import ApplicationsComponent from './employee/ApplicationsComponent.jsx'
 import AddEditApplicationComponent from './employee/AddEditApplicationComponent.jsx'
 import PropertyProfileComponent from './employee/PropertyProfileComponent.jsx'
+import AddEditLeaseComponent from './tenant/AddEditLeaseComponent.jsx'
 
 class PropertyManagement extends Component{
     render() {
@@ -44,7 +45,8 @@ class PropertyManagement extends Component{
                             <PrivateRoute path="/applications" roles={[Role.Employee]} component={ApplicationsComponent}/>                    
                             <PrivateRoute path="/employeedashboard" roles={[Role.Employee]} component={EmployeeDashboardComponent}/>   
                             {/* TENANT ROUTES */}      
-                            <PrivateRoute path="/tenantdashboard" roles={[Role.Tenant]} component={TenantDashboardComponent}/>   
+                            <PrivateRoute path="/tenantdashboard" roles={[Role.Tenant]} component={TenantDashboardComponent}/>  
+                            <PrivateRoute path="/lease" roles={[Role.Tenant]} component={AddEditLeaseComponent}/>  
                             {/* APPLICANT ROUTES */}      
                             <PrivateRoute path="/applicantdashboard" roles={[Role.Applicant]} component={ApplicantDashboardComponent}/> 
                             <PrivateRoute path="/application" roles={[Role.Applicant]} component={ApplicationComponent}/> 
