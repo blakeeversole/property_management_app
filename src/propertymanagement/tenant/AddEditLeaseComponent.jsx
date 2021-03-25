@@ -18,23 +18,36 @@ class AddEditLeaseComponent extends Component{
         }
 
         this.onSubmit = this.onSubmit.bind(this)
+
+        this.onSubmit = this.onSubmit.bind(this)
+
+        this.onSubmit = this.onSubmit.bind(this)
         // this.validate = this.validate.bind(this)
     }
 
     componentDidMount(){
-        if(this.state.id===undefined){
-            return
+        if(this.state.id===undefined){   
+            PropertyManagementService.getPropertyIdTenantIdUsingUsername()
+            .then((response) =>{                
+                this.setState({
+                    tenantId : response.data[0],
+                    propertyId : response.data[1]
+                })                         
+            })
+        }
+        else{
+            PropertyManagementService.retrieveLease(this.state.id)
+            .then(response => this.setState({
+                endLeaseDate : response.data.endLeaseDate,
+                leaseSignDate : response.data.leaseSignDate,
+                moveInDate : response.data.moveInDate,
+                petAddendum : response.data.petAddendum,
+                propertyId : response.data.propertyId,
+                tenantId : response.data.tenantId
+            }))
         }
 
-        PropertyManagementService.retrieveLease(this.state.id)
-                .then(response => this.setState({
-                    endLeaseDate : response.data.endLeaseDate,
-                    leaseSignDate : response.data.leaseSignDate,
-                    moveInDate : response.data.moveInDate,
-                    petAddendum : response.data.petAddendum,
-                    propertyId : response.data.propertyId,
-                    tenantId : response.data.tenantId
-                }))
+        
     }
 
     // validate(values){
@@ -58,7 +71,7 @@ class AddEditLeaseComponent extends Component{
         }
 
 
-        if (this.state.id==='0') {
+        if (this.state.id===undefined) {
             PropertyManagementService.createLease(lease)
             .then(() => this.props.history.push('/tenantdashboard'))
         } else {
@@ -83,19 +96,19 @@ class AddEditLeaseComponent extends Component{
                     >
                         {
                             (props) =>(
-                                <Form>                                  
-                                    <fieldset className="form-group">
-                                        <label>End Lease Date</label>
-                                        <Field className="form-control" type="date" name="endLeaseDate"/>
-                                    </fieldset>      
-                                    <fieldset className="form-group">
-                                        <label>Lease Signed Date</label>
-                                        <Field className="form-control" type="date" name="leaseSignDate"/>
-                                    </fieldset>      
+                                <Form>            
                                     <fieldset className="form-group">
                                         <label>Move In Date</label>
                                         <Field className="form-control" type="date" name="moveInDate"/>
-                                    </fieldset>     
+                                    </fieldset>        
+                                    <fieldset className="form-group">
+                                        <label>Lease Signed Date</label>
+                                        <Field className="form-control" type="date" name="leaseSignDate"/>
+                                    </fieldset>                           
+                                    <fieldset className="form-group">
+                                        <label>End Lease Date</label>
+                                        <Field className="form-control" type="date" name="endLeaseDate"/>
+                                    </fieldset>    
                                     <label>Pet Addendum?</label>
                                     <fieldset className="form-group" role="group" aria-labelledby="my-radio-group">
                                         <label className="col-2">
