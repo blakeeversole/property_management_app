@@ -15,7 +15,7 @@ class TenantDashboardComponent extends Component{
     componentDidMount(){           
         PropertyManagementService.getIfUserHasApplied()
         .then((response) =>{
-            if(response.data === '') {
+            if(response.data !== '') {
                 this.setState({signedLease : true})
             }                          
         })
@@ -35,8 +35,8 @@ class TenantDashboardComponent extends Component{
                 <h1 className="text-center">Tenant Dashboard</h1>
                 <div className="container">                    
                     <div className="row">
+                        {this.state.signedLease === true && <div>You are all good to move in on your move in date.</div>}  
                         {this.state.signedLease === false && <button className="btn btn-success" onClick={this.leaseButtonClicked}>Lease</button>}  
-                        <button className="btn btn-success">Payment</button>
                     </div>
                 
                 </div>

@@ -18,11 +18,6 @@ class AddEditLeaseComponent extends Component{
         }
 
         this.onSubmit = this.onSubmit.bind(this)
-
-        this.onSubmit = this.onSubmit.bind(this)
-
-        this.onSubmit = this.onSubmit.bind(this)
-        // this.validate = this.validate.bind(this)
     }
 
     componentDidMount(){
@@ -50,15 +45,6 @@ class AddEditLeaseComponent extends Component{
         
     }
 
-    // validate(values){
-    //     let errors = {}
-    //     if(!values.address1){
-    //         errors.address1 = 'Enter an address'
-    //     }
-
-    //     return errors
-    // }
-
     onSubmit(values){ 
         let lease = {
             id: this.state.id,
@@ -69,7 +55,6 @@ class AddEditLeaseComponent extends Component{
             propertyId : values.propertyId,
             tenantId : values.tenantId
         }
-
 
         if (this.state.id===undefined) {
             PropertyManagementService.createLease(lease)

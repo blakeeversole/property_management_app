@@ -82,7 +82,7 @@ class SignUpComponent extends Component{
         let {username, password} = this.state
         return (
             <div>
-                <h1 className="text-center">Application</h1>
+                <h1 className="text-center">Sign Up</h1>
                 <div className="container">
                     <Formik
                         initialValues={{username, password}}
