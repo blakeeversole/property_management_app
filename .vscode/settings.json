@@ -3,5 +3,6 @@
         "node_modules{,/**}",
         ".vscode{,/**}"
     ],
-    "appService.deploySubpath": "."
+    "appService.deploySubpath": ".",
+    "appService.defaultWebAppToDeploy": "/subscriptions/014d4f27-f91a-42d1-95de-7670d527d73b/resourceGroups/restful-api-1617030804521-rg/providers/Microsoft.Web/sites/property-management-webapp"
 }
