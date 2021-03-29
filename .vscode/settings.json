@@ -3,6 +3,5 @@
         "node_modules{,/**}",
         ".vscode{,/**}"
     ],
-    "appService.defaultWebAppToDeploy": "/subscriptions/014d4f27-f91a-42d1-95de-7670d527d73b/resourceGroups/appsvc_linux_centralus_basic/providers/Microsoft.Web/sites/property-management-application",
     "appService.deploySubpath": "."
 }
