@@ -26,7 +26,7 @@ class EmployeeDashboardComponent extends Component{
     render(){
         return(
             <div>
-                <h1 className="text-center">Employee Dashboard</h1>
+                <h1 className="text-center">Employee Changed Dashboard</h1>
                 <div className="container">                    
                     <div className="row">
                         <button className="btn btn-success" onClick={this.usersClicked}>Users</button>

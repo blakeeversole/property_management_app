@@ -4,5 +4,8 @@
         ".vscode{,/**}"
     ],
     "appService.deploySubpath": ".",
-    "appService.defaultWebAppToDeploy": "/subscriptions/014d4f27-f91a-42d1-95de-7670d527d73b/resourceGroups/restful-api-1617030804521-rg/providers/Microsoft.Web/sites/property-management-webapp"
+    "appService.defaultWebAppToDeploy": "/subscriptions/014d4f27-f91a-42d1-95de-7670d527d73b/resourceGroups/restful-api-1617030804521-rg/providers/Microsoft.Web/sites/property-management-webapp",
+    "staticWebApps.appSubpath": "/",
+    "staticWebApps.apiSubpath": "api",
+    "staticWebApps.outputSubpath": "build"
 }
