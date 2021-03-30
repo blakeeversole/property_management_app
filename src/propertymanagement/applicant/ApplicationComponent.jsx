@@ -86,7 +86,7 @@ class ApplicationComponent extends Component{
                                 <Form>
                                     <ErrorMessage name="address1" conponent="div" className="alert alert-warning"/>                                    
                                     <fieldset className="form-group">
-                                        <label>First Name</label>
+                                        <label>First Name </label>
                                         <Field className="form-control" type="text" name="firstName"/>
                                     </fieldset>  
                                     <fieldset className="form-group">
