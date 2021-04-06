@@ -33,49 +33,49 @@ class SignUpComponent extends Component{
     }
 
     async onSubmit(values){ 
-        let user = {
-            id: 0,
-            username: values.username,
-            password: values.password,
-            role: "Applicant"
-        }
+        // let user = {
+        //     id: 0,
+        //     username: values.username,
+        //     password: values.password,
+        //     role: "Applicant"
+        // }
 
-        await AuthenticationService.executeJwtAuthenticationService("applicant", "applicant")
-        .then( (response) => {
-             AuthenticationService.setSessionStorage("applicant", response.data.token)
-            AuthenticationService.returnUserRole("applicant")
-        }).catch( () => {
-            this.setState({showSuccessMessage:false})
-            this.setState({hasLoginFailed:true})
-        }) 
+        // await AuthenticationService.executeJwtAuthenticationService("applicant", "applicant")
+        // .then( (response) => {
+        //      AuthenticationService.setSessionStorage("applicant", response.data.token)
+        //     AuthenticationService.returnUserRole("applicant")
+        // }).catch( () => {
+        //     this.setState({showSuccessMessage:false})
+        //     this.setState({hasLoginFailed:true})
+        // }) 
 
         
-        await PropertyManagementService.createUser(user)   
-        AuthenticationService.logout()
+        // await PropertyManagementService.createUser(user)   
+        // AuthenticationService.logout()
 
-        this.state.username = values.username
-        this.state.password = values.password
+        // this.state.username = values.username
+        // this.state.password = values.password
                 
-        await AuthenticationService.executeJwtAuthenticationService(this.state.username, this.state.password)
-        .then( (response) => {
-            AuthenticationService.setSessionStorage(this.state.username, response.data.token)
-            AuthenticationService.returnUserRole(this.state.username)
-            .then( (response) => {
-                sessionStorage.setItem('userRole', response.data.role)
-                if(response.data.role === 'Employee'){
-                    this.props.history.push(`/employeedashboard`)
-                }
-                if(response.data.role === 'Tenant'){
-                    this.props.history.push(`/tenantdashboard`)
-                }
-                if(response.data.role === 'Applicant'){
-                    this.props.history.push(`/applicantdashboard`)
-                }
-            })     
-        }).catch( () => {
-            this.setState({showSuccessMessage:false})
-            this.setState({hasLoginFailed:true})
-        }) 
+        // await AuthenticationService.executeJwtAuthenticationService(this.state.username, this.state.password)
+        // .then( (response) => {
+        //     AuthenticationService.setSessionStorage(this.state.username, response.data.token)
+        //     AuthenticationService.returnUserRole(this.state.username)
+        //     .then( (response) => {
+        //         sessionStorage.setItem('userRole', response.data.role)
+        //         if(response.data.role === 'Employee'){
+        //             this.props.history.push(`/employeedashboard`)
+        //         }
+        //         if(response.data.role === 'Tenant'){
+        //             this.props.history.push(`/tenantdashboard`)
+        //         }
+        //         if(response.data.role === 'Applicant'){
+        //             this.props.history.push(`/applicantdashboard`)
+        //         }
+        //     })     
+        // }).catch( () => {
+        //     this.setState({showSuccessMessage:false})
+        //     this.setState({hasLoginFailed:true})
+        // }) 
     }
 
     render(){
